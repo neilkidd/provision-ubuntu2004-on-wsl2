@@ -25,18 +25,18 @@
         state: latest
         name:
           - awscli
-          - silversearcher-ag
-          - jq
-          - unzip
-          - zip
-          - tree
           - dos2unix
-          - graphviz
           - gnupg
+          - golang
+          - graphviz
+          - jq
           - neofetch
           - net-tools
           - nmap
-          - golang
+          - silversearcher-ag
+          - tree
+          - unzip
+          - zip
 
   post_tasks:
     - name: "apt autoclean && autoremove"
