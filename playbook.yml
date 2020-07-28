@@ -24,6 +24,7 @@
       apt:
         state: latest
         name:
+          - awscli
           - silversearcher-ag
           - jq
           - unzip
