@@ -31,6 +31,10 @@
           - dos2unix
           - graphviz
           - gnupg
+          - neofetch
+          - net-tools
+          - nmap
+          - golang
 
   post_tasks:
     - name: "apt autoclean && autoremove"
