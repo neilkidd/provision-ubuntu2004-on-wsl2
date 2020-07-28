@@ -1,0 +1,44 @@
+---
+- hosts: all
+  become: true
+
+  #vars_files:
+  #  - vars.yml
+
+  pre_tasks:
+    - name: "Update apt cache if needed."
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: "Install aptitude - preferred for ansible"
+      apt:
+        state: latest
+        name:
+          - aptitude
+
+    - name: "Update all packages to the latest version"
+      apt:
+        upgrade: dist
+
+  tasks:
+    - name: "Install apt cmd line apps"
+      apt:
+        state: latest
+        name:
+          - curl
+          - sed
+          - jq
+          - unzip
+          - zip
+          - git
+          - tree
+          - dos2unix
+          - graphviz
+          - gnupg
+
+  post_tasks:
+    - name: "apt autoclean && autoremove"
+      apt:
+        autoclean: yes
+        autoremove: yes
