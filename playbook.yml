@@ -24,6 +24,7 @@
       apt:
         state: latest
         name:
+          - silversearcher-ag
           - jq
           - unzip
           - zip
