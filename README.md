@@ -27,10 +27,10 @@ Use ansible, in a pipenv, in the WSL 2 ubuntu instance to provision locally. Ver
 
 #### Ansible in the Pipenv
 
-`sudo apt install --yes python3-pip`
-`sudo pip3 install pipenv`
-`pipenv shell`
-`pipenv install ansible --dev`
+`sudo apt install --yes python3-pip`  
+`sudo pip3 install pipenv`  
+`pipenv shell`  
+`pipenv install ansible --dev`  
 
 #### Starting a session
 
