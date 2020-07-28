@@ -26,12 +26,9 @@
       apt:
         state: latest
         name:
-          - curl
-          - sed
           - jq
           - unzip
           - zip
-          - git
           - tree
           - dos2unix
           - graphviz
