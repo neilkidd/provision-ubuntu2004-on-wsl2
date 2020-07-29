@@ -51,6 +51,13 @@
         remote_src: true
         creates: "/usr/local/bin/terraform"
 
+    - name: "aws-vault download & install"
+      get_url:
+        url: "https://github.com/99designs/aws-vault/releases/download/v5.4.4/aws-vault-linux-amd64"
+        dest: "/usr/local/bin/aws-vault"
+        checksum: "sha256:216695e63583296fd7b4202f86479af8da3a7fb00929a22952e9d4bc95fd0d66"
+        mode: '0755'
+
   post_tasks:
     - name: "apt autoclean && autoremove"
       apt:
