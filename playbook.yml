@@ -69,18 +69,20 @@
         path: ~/bin
         state: directory
 
-    - name: "Add wsl-open to private bin"
+    - name: "Add wsl-open.sh to /usr/local/bin"
       get_url:
         url: "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
-        dest: ~/bin/wsl-open.sh
+        dest: "/usr/local/bin/wsl-open.sh"
         checksum: "sha256:9ef01e8584b3a8219c457fc83bb09c7f35b8bced537a3700e91d2a663ff2d14e"
         mode: '0755'
+      become: true
 
-    - name: "Symlink xdg-open -> wsl-open.sh in private bin"
+    - name: "Symlink xdg-open -> wsl-open.sh"
       file:
-        src: ~/bin/wsl-open.sh
-        path: ~/bin/xdg-open
+        src: "/usr/local/bin/wsl-open.sh"
+        path: "/usr/local/bin/xdg-open"
         state: link
+      become: true
 
 # vagrant ???
 # sdk man? How does java work from intellij?
