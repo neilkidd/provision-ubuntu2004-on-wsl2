@@ -64,11 +64,6 @@
         mode: '0755'
       become: true
 
-    - name: "Ensure private /bin dir"
-      file:
-        path: ~/bin
-        state: directory
-
     - name: "Add wsl-open.sh to /usr/local/bin"
       get_url:
         url: "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
