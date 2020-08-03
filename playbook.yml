@@ -1,23 +1,25 @@
 ---
 - hosts: localhost
   connection: local
-  become: true
 
   pre_tasks:
     - name: "Update apt cache if needed."
       apt:
         update_cache: yes
         cache_valid_time: 3600
+      become: true
 
     - name: "Install aptitude - preferred for ansible"
       apt:
         state: latest
         name:
           - aptitude
+      become: true
 
     - name: "Update all packages to the latest version"
       apt:
         upgrade: dist
+      become: true
 
   tasks:
     - name: "Install apt cmd line apps"
@@ -37,12 +39,14 @@
           - tree
           - unzip
           - zip
+      become: true
 
     - name: "Terraform download."
       get_url:
         url: "https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip"
         dest: "/tmp/terraform_0.12.29_linux_amd64.zip"
         checksum: "sha256:872245d9c6302b24dc0d98a1e010aef1e4ef60865a2d1f60102c8ad03e9d5a1d"
+      become: true
 
     - name: "Terraform install"
       unarchive:
@@ -50,6 +54,7 @@
         dest: "/usr/local/bin"
         remote_src: true
         creates: "/usr/local/bin/terraform"
+      become: true
 
     - name: "aws-vault download & install"
       get_url:
@@ -57,9 +62,19 @@
         dest: "/usr/local/bin/aws-vault"
         checksum: "sha256:216695e63583296fd7b4202f86479af8da3a7fb00929a22952e9d4bc95fd0d66"
         mode: '0755'
+      become: true
+
+    - name: "Ensure private /bin dir"
+      file:
+        path: ~/bin
+        state: directory
+
+# vagrant ???
+# sdk man? How does java work from intellij?
 
   post_tasks:
     - name: "apt autoclean && autoremove"
       apt:
         autoclean: yes
         autoremove: yes
+      become: true
