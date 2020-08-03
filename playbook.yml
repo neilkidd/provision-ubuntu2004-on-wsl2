@@ -79,12 +79,15 @@
         state: link
       become: true
 
-# vagrant ???
-# sdk man? How does java work from intellij?
-
   post_tasks:
     - name: "apt autoclean && autoremove"
       apt:
         autoclean: yes
         autoremove: yes
       become: true
+
+  roles:
+    - role: stephdewit.nvm
+      nvm_version: 0.35.3
+      nvm_node_version: 12.18.3
+      become: false
