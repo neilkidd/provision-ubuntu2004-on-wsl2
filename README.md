@@ -37,12 +37,13 @@ Use ansible, in a pipenv, in the WSL 2 ubuntu instance to provision locally. Ver
 - `cd working_dir`
 - `pipenv shell`
 
-`ansible-playbook test.yml --connection=local`
+`ansible-playbook test.yml -i inventory`
 
 Find all local info
-`ansible localhost -m setup --connection=local`
-
-`ansible-playbook playbook.yml --ask-become-pass -e 'ansible_python_interpreter=/usr/bin/python3'`
+`ansible localhost -m setup`
+`ansible-galaxy install -r requirements.yml`
+`ansible-playbook playbook.yml -i inventory --ask-become-pass`
+`ansible-playbook playbook.yml -i inventory --ask-become-pass--tags "rbenv"`
 
 ```
 (provision-ubuntu2004-on-wsl2) neil@NK-MT-X1:~/code/nk/provision-ubuntu2004-on-wsl2$ ansible-playbook playbook.yml --connection=local --ask-become-pass

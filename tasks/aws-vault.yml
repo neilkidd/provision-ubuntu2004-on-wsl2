@@ -1,0 +1,24 @@
+---
+
+- name: "aws-vault download & install"
+  get_url:
+    url: "https://github.com/99designs/aws-vault/releases/download/v5.4.4/aws-vault-linux-amd64"
+    dest: "/usr/local/bin/aws-vault"
+    checksum: "sha256:216695e63583296fd7b4202f86479af8da3a7fb00929a22952e9d4bc95fd0d66"
+    mode: '0755'
+  become: true
+
+- name: "aws-vault - Add wsl-open.sh to /usr/local/bin"
+  get_url:
+    url: "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
+    dest: "/usr/local/bin/wsl-open.sh"
+    checksum: "sha256:9ef01e8584b3a8219c457fc83bb09c7f35b8bced537a3700e91d2a663ff2d14e"
+    mode: '0755'
+  become: true
+
+- name: "aws-vault - Symlink xdg-open -> wsl-open.sh"
+  file:
+    src: "/usr/local/bin/wsl-open.sh"
+    path: "/usr/local/bin/xdg-open"
+    state: link
+  become: true

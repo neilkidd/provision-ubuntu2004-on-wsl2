@@ -1,0 +1,14 @@
+- name: "Terraform download."
+  get_url:
+    url: "https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip"
+    dest: "/tmp/terraform_0.12.29_linux_amd64.zip"
+    checksum: "sha256:872245d9c6302b24dc0d98a1e010aef1e4ef60865a2d1f60102c8ad03e9d5a1d"
+  become: true
+
+- name: "Terraform install"
+  unarchive:
+    src: "/tmp/terraform_0.12.29_linux_amd64.zip"
+    dest: "/usr/local/bin"
+    remote_src: true
+    creates: "/usr/local/bin/terraform"
+  become: true

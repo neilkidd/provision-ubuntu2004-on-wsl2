@@ -1,6 +1,9 @@
 ---
-- hosts: localhost
+- hosts: all
   connection: local
+
+  vars_files:
+    - vars.yml
 
   pre_tasks:
     - name: "Update apt cache if needed."
@@ -41,43 +44,14 @@
           - zip
       become: true
 
-    - name: "Terraform download."
-      get_url:
-        url: "https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip"
-        dest: "/tmp/terraform_0.12.29_linux_amd64.zip"
-        checksum: "sha256:872245d9c6302b24dc0d98a1e010aef1e4ef60865a2d1f60102c8ad03e9d5a1d"
-      become: true
+    - include_tasks: tasks/terraform.yml
+      when: install_terraform
 
-    - name: "Terraform install"
-      unarchive:
-        src: "/tmp/terraform_0.12.29_linux_amd64.zip"
-        dest: "/usr/local/bin"
-        remote_src: true
-        creates: "/usr/local/bin/terraform"
-      become: true
+    - include_tasks: tasks/aws-vault.yml
+      when: install_aws_vault
 
-    - name: "aws-vault download & install"
-      get_url:
-        url: "https://github.com/99designs/aws-vault/releases/download/v5.4.4/aws-vault-linux-amd64"
-        dest: "/usr/local/bin/aws-vault"
-        checksum: "sha256:216695e63583296fd7b4202f86479af8da3a7fb00929a22952e9d4bc95fd0d66"
-        mode: '0755'
-      become: true
-
-    - name: "Add wsl-open.sh to /usr/local/bin"
-      get_url:
-        url: "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
-        dest: "/usr/local/bin/wsl-open.sh"
-        checksum: "sha256:9ef01e8584b3a8219c457fc83bb09c7f35b8bced537a3700e91d2a663ff2d14e"
-        mode: '0755'
-      become: true
-
-    - name: "Symlink xdg-open -> wsl-open.sh"
-      file:
-        src: "/usr/local/bin/wsl-open.sh"
-        path: "/usr/local/bin/xdg-open"
-        state: link
-      become: true
+    - include_tasks: tasks/rbenv.yml
+      when: install_rbenv
 
   post_tasks:
     - name: "apt autoclean && autoremove"

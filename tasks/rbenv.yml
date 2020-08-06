@@ -1,0 +1,31 @@
+---
+
+- name: Debugz2
+  debug:
+    msg:
+    - "{{ lookup('env','HOME') }}"
+
+- name: "rbenv - git clone."
+  git:
+    repo: 'https://github.com/rbenv/rbenv.git'
+    dest: '${HOME}/.rbenv'
+
+- name: "rbenv build"
+  shell: 'cd ${HOME}/.rbenv && src/configure && make -C src'
+
+- name: "rbenv - set path in bashrc"
+  lineinfile:
+    path: '${HOME}/.bashrc'
+    state: present
+    line: 'export PATH="$HOME/.rbenv/bin:$PATH"'
+
+- name: "rbenv - set init in .bashrc"
+  lineinfile:
+    path: '${HOME}/.bashrc'
+    state: present
+    line: 'eval "$(rbenv init -)"'
+
+- name: "rbenv - clone ruby-build."
+  git:
+    repo: 'https://github.com/rbenv/ruby-build.git'
+    dest: '${HOME}/.rbenv/plugins/ruby-build'
