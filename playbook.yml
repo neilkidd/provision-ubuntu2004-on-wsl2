@@ -35,6 +35,7 @@
           - golang
           - graphviz
           - jq
+          - libsqlite3-dev
           - neofetch
           - net-tools
           - nmap
