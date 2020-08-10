@@ -22,3 +22,9 @@
     path: "/usr/local/bin/xdg-open"
     state: link
   become: true
+
+- name: "aws-vault - set completions in .bashrc"
+  lineinfile:
+    path: '${HOME}/.bashrc'
+    state: present
+    line: 'eval "$(aws-vault --completion-script-bash)"'
