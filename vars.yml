@@ -2,3 +2,4 @@
 install_aws_vault: yes
 install_rbenv: yes
 install_terraform: yes
+install_yarn: yes

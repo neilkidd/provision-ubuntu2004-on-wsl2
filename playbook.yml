@@ -45,6 +45,9 @@
           - zip
       become: true
 
+    - include_tasks: tasks/yarn.yml
+      when: install_yarn
+
     - include_tasks: tasks/terraform.yml
       when: install_terraform
 
