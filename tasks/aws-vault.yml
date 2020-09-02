@@ -28,3 +28,9 @@
     path: '${HOME}/.bashrc'
     state: present
     line: 'eval "$(aws-vault --completion-script-bash)"'
+
+- name: "aws-vault - set backend to file"
+  lineinfile:
+    path: '${HOME}/.bashrc'
+    state: present
+    line: 'export AWS_VAULT_BACKEND=file'
