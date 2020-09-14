@@ -1,14 +1,16 @@
 - name: "Terraform download."
   get_url:
-    url: "https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip"
-    dest: "/tmp/terraform_0.12.29_linux_amd64.zip"
-    checksum: "sha256:872245d9c6302b24dc0d98a1e010aef1e4ef60865a2d1f60102c8ad03e9d5a1d"
+    url: "https://releases.hashicorp.com/terraform/0.13.2/terraform_0.13.2_linux_amd64.zip"
+    dest: "/tmp/terraform_0.13.2_linux_amd64.zip"
+    checksum: "sha256:6c1c6440c5cb199e85926aea65773450564f501fddcd7876f453ba95b45ba746"
   become: true
 
 - name: "Terraform install"
   unarchive:
-    src: "/tmp/terraform_0.12.29_linux_amd64.zip"
+    src: "/tmp/terraform_0.13.2_linux_amd64.zip"
     dest: "/usr/local/bin"
     remote_src: true
     creates: "/usr/local/bin/terraform"
   become: true
+
+# TODO https://www.terraform.io/docs/commands/index.html#shell-tab-completion
