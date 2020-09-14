@@ -17,49 +17,29 @@ Use ansible, in a pipenv, in the WSL 2 ubuntu instance to provision locally. Ver
 ## Random notes
 
 1. Install Ansible in a pypenv
-1. Run the playbook locally.
+1. `cd working_dir`
+1. Start the pipenv:  
+`pipenv shell`
+1. Run the playbook locally.  
+`ansible-playbook playbook.yml -i inventory --ask-become-pass`
 1. Profit
+
+#### Installing Ansible in the Pipenv
+
+- `sudo apt install --yes python3-pip`
+- `sudo pip3 install pipenv`
+- `mkdir work && cd work`
+- `pipenv shell`
+- `pipenv install ansible --dev`
+
+#### Find all local info
+
+- `ansible localhost -m setup`
+- `ansible-galaxy install -r requirements.yml`
+- `ansible-playbook playbook.yml -i inventory --ask-become-pass`
+- `ansible-playbook playbook.yml -i inventory --ask-become-pass--tags "rbenv"`
 
 #### Python3 and Pipenv
 
 - See [Brad's Pipenv Crash Course](https://youtu.be/6Qmnh5C4Pmo)
 - Brad's [Pipenv cheatsheet](https://gist.github.com/bradtraversy/c70a93d6536ed63786c434707b898d55)
-
-#### Ansible in the Pipenv
-
-`sudo apt install --yes python3-pip`  
-`sudo pip3 install pipenv`  
-`pipenv shell`  
-`pipenv install ansible --dev`  
-
-#### Starting a session
-
-- `cd working_dir`
-- `pipenv shell`
-
-`ansible-playbook test.yml -i inventory`
-
-Find all local info
-`ansible localhost -m setup`
-`ansible-galaxy install -r requirements.yml`
-`ansible-playbook playbook.yml -i inventory --ask-become-pass`
-`ansible-playbook playbook.yml -i inventory --ask-become-pass--tags "rbenv"`
-
-```
-(provision-ubuntu2004-on-wsl2) neil@NK-MT-X1:~/code/nk/provision-ubuntu2004-on-wsl2$ ansible-playbook playbook.yml --connection=local --ask-become-pass
-BECOME password: 
-[WARNING]: No inventory was parsed, only implicit localhost is available
-[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
-
-PLAY [localhost] ************************************************************************************************************************************
-
-TASK [Gathering Facts] ******************************************************************************************************************************
-ok: [localhost]
-
-TASK [Update apt cache if needed.] ******************************************************************************************************************
-[WARNING]: Updating cache and auto-installing missing dependency: python3-apt
-fatal: [localhost]: FAILED! => {"changed": false, "msg": "Could not import python modules: apt, apt_pkg. Please install python3-apt package."}
-
-PLAY RECAP ******************************************************************************************************************************************
-localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
-```
