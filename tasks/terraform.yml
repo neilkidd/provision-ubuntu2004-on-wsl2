@@ -13,4 +13,9 @@
     creates: "/usr/local/bin/terraform"
   become: true
 
-# TODO https://www.terraform.io/docs/commands/index.html#shell-tab-completion
+- name: "Terraform autocomplete in .bashrc"
+  lineinfile:
+    path: '${HOME}/.bashrc'
+    state: present
+    line: 'complete -C /usr/local/bin/terraform terraform'
+
