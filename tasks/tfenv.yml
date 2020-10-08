@@ -1,34 +1,10 @@
-- name: "tfenv download."
-  get_url:
-    url: "https://github.com/tfutils/tfenv/archive/v2.0.0.zip"
-    dest: "/tmp/tf_env_v2.0.0.zip"
-    checksum: "sha256:db698b68cd0b8947c3a56c0ef0d42f005fdc4d56a1f22dfe1e3b429b7a7e89f3"
-  become: true
+- name: "tfenv - git clone."
+  git:
+    repo: 'https://github.com/tfutils/tfenv.git'
+    dest: '${HOME}/.tfenv'
 
-- name: "tfenv install"
-  unarchive:
-    src: "/tmp/tf_env_v2.0.0.zip"
-    dest: "/usr/local/bin"
-    remote_src: true
-    creates: "/usr/local/bin/tfenv-2.0.0"
-  become: true
-
-- name: "tfenv - Symlink bin/tfenv to usr/local/bin"
-  file:
-    src: "/usr/local/bin/tfenv-2.0.0/bin/tfenv"
-    path: "/usr/local/bin/tfenv"
-    state: link
-  become: true
-
-- name: "tfenv - Symlink bin/terraform to usr/local/bin/terraform"
-  file:
-    src: "/usr/local/bin/tfenv-2.0.0/bin/terraform"
-    path: "/usr/local/bin/terraform"
-    state: link
-  become: true
-
-- name: "tfenv - Terraform autocomplete in .bashrc (risky on version!)"
+- name: "tfenv - set path in bashrc"
   lineinfile:
     path: '${HOME}/.bashrc'
     state: present
-    line: 'complete -C /usr/local/bin/terraform terraform'
+    line: 'export PATH="$HOME/.tfenv/bin:$PATH"'
