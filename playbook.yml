@@ -48,8 +48,8 @@
     - include_tasks: tasks/yarn.yml
       when: install_yarn
 
-    - include_tasks: tasks/terraform.yml
-      when: install_terraform
+    - include_tasks: tasks/tfenv.yml
+      when: install_tfenv
 
     - include_tasks: tasks/aws-vault.yml
       when: install_aws_vault
