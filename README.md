@@ -4,15 +4,16 @@ Automating provisioning ubuntu 20.04 with Ansible on WSL 2
 
 ## What
 
-The time is now, I hope, to have consistent Windows / Linux hybrid environment"
-
-## Why
-
-Automate as mush as is pragmatic and share it. This repo is standing on the shoulders of giants.
+Automate the provisioning of a consistent Windows / Linux hybrid environment"
 
 ## How
 
-Use ansible, in a pipenv, in the WSL 2 ubuntu instance to provision locally. Very russian doll...
+Use ansible, in a pipenv, in the WSL 2 ubuntu instance to provision locally.
+
+### Prerequisites
+
+1. Windows 10.
+1. Ubuntu 20.04 installed, via WSL2 / store.
 
 ## Random notes
 
@@ -32,14 +33,14 @@ Use ansible, in a pipenv, in the WSL 2 ubuntu instance to provision locally. Ver
 - `pipenv shell`
 - `pipenv install ansible --dev`
 
+#### Python3 and Pipenv
+
+- See [Brad's Pipenv Crash Course](https://youtu.be/6Qmnh5C4Pmo)
+- Brad's [Pipenv cheatsheet](https://gist.github.com/bradtraversy/c70a93d6536ed63786c434707b898d55)
+
 #### Find all local info
 
 - `ansible localhost -m setup`
 - `ansible-galaxy install -r requirements.yml`
 - `ansible-playbook playbook.yml -i inventory --ask-become-pass`
 - `ansible-playbook playbook.yml -i inventory --ask-become-pass--tags "rbenv"`
-
-#### Python3 and Pipenv
-
-- See [Brad's Pipenv Crash Course](https://youtu.be/6Qmnh5C4Pmo)
-- Brad's [Pipenv cheatsheet](https://gist.github.com/bradtraversy/c70a93d6536ed63786c434707b898d55)
