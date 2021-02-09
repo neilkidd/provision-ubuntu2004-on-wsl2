@@ -1,10 +1,5 @@
 ---
 
-- name: Debugz2
-  debug:
-    msg:
-    - "{{ lookup('env','HOME') }}"
-
 - name: "rbenv - git clone."
   git:
     repo: 'https://github.com/rbenv/rbenv.git'
