@@ -31,7 +31,7 @@ Intended to be re-runnable (idempotent) to maintain and update when required.
 
 ## What is Installed?
 
-- See [playbook.yml](playbook.yml) task: `Install apt cmd line apps` for apt packages
+- See the [playbook.yml](playbook.yml) task: `Install apt cmd line apps` for apt packages
 - [yarn](tasks/yarn.yml)
 - [tfenv](tasks/tfenv.yml)
 - [aws vault](tasks/aws-vault.yml)
