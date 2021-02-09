@@ -2,7 +2,7 @@
 
 Automating provisioning Ubuntu 20.04 with Ansible on WSL 2
 
-Uses ansible, in a pipenv, in a WSL 2 Ubuntu instance to provision locally.
+Uses ansible, in a [pipenv](https://docs.pipenv.org/), in a WSL 2 Ubuntu instance to provision locally.
 
 Intended to be re-runnable (idempotent) to maintain and update when required.
 
@@ -23,8 +23,8 @@ Intended to be re-runnable (idempotent) to maintain and update when required.
 
 1. `git clone git@github.com:neilkidd/provision-ubuntu2004-on-wsl2.git`
 1. `cd provision-ubuntu2004-on-wsl2`
+1. `pipenv install`
 1. `pipenv shell`
-1. `pipenv install ansible --dev`
 1. `ansible-galaxy install -r requirements.yml`
 1. `ansible-playbook playbook.yml -i inventory --ask-become-pass`
 1. Profit :smile:
@@ -44,6 +44,7 @@ Intended to be re-runnable (idempotent) to maintain and update when required.
 |--------------------- | ----------------------------------------------------------------------------- |
 |Find all local info   | `ansible localhost -m setup`                                                  |
 |Run only rbenv        | `ansible-playbook playbook.yml -i inventory --ask-become-pass --tags "rbenv"` |
+|Purge deps            | `pipenv uninstall --all`                                                      |
 
 See [vars.yml](vars.yml) to configure which tasks get run.
 
