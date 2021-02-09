@@ -12,7 +12,7 @@
   get_url:
     url: "https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh"
     dest: "/usr/local/bin/wsl-open.sh"
-    checksum: "sha256:9ef01e8584b3a8219c457fc83bb09c7f35b8bced537a3700e91d2a663ff2d14e"
+    checksum: "sha256:5c96764bcbc3bdc995d5f8100f33d2586e8cbb7d594848dc60ab9b6a012b5a6c."
     mode: '0755'
   become: true
 
