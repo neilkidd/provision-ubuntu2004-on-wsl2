@@ -25,7 +25,7 @@ Intended to be re-runnable (idempotent) to maintain and update when required.
 1. `cd provision-ubuntu2004-on-wsl2`
 1. `pipenv install --dev`
 1. `pipenv shell`
-1. `ansible-galaxy install -r requirements.yml`
+1. `ansible-galaxy install -r requirements.yml --force`
 1. `ansible-playbook playbook.yml -i inventory --ask-become-pass`
 1. Profit :smile:
 
