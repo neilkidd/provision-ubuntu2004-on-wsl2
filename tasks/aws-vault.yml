@@ -2,9 +2,9 @@
 
 - name: "aws-vault download & install"
   get_url:
-    url: "https://github.com/99designs/aws-vault/releases/download/v6.2.0/aws-vault-linux-amd64"
+    url: "https://github.com/99designs/aws-vault/releases/download/v6.3.1/aws-vault-linux-amd64"
     dest: "/usr/local/bin/aws-vault"
-    checksum: "sha256:1d87a634cd22de9c9cf0cbbbd710651622414ecc556e9c91c9acdc5f07329c6e"
+    checksum: "sha256:84cfab75012eb272add8b09cb2d295941b977cf2bf58b3fb3caa4c4adac6f17f"
     mode: '0755'
   become: true
 
