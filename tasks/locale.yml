@@ -1,0 +1,36 @@
+---
+
+- name: "locale - search current lang"
+  shell: 'locale | grep LANG= | cut -d= -f2'
+  register: locale_lang_search
+  changed_when: false
+
+- name: "locale - Parse 'LANG'"
+  set_fact:
+    locale_lang: "{{ locale_lang_search.stdout }}"
+
+- name: "locale - exec locale configuration"
+  block:
+
+    - name: "locale - select default locale with debconf"
+      debconf:
+        name: locales
+        question: locales/default_environment_locale
+        value: en_GB.UTF-8
+        vtype: select
+
+    - name: "locale - ensure lang is in /etc/locale.gen"
+      lineinfile:
+        dest: /etc/locale.gen
+        regexp: "^#? ?en_GB.UTF-8 UTF-8"
+        line: "en_GB.UTF-8 UTF-8"
+        state: present
+
+    - name: "locale - rebuild locales database"
+      command: "{{ item }}"
+      with_items:
+        - dpkg-reconfigure locales -f noninteractive
+        - /usr/sbin/locale-gen
+
+  when: locale_lang != 'en_GB.UTF-8'
+  become: true

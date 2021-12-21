@@ -25,6 +25,8 @@
       become: true
 
   tasks:
+    - include_tasks: tasks/locale.yml
+
     - name: "Install apt cmd line apps"
       apt:
         state: latest
