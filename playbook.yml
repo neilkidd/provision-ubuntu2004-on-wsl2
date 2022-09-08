@@ -33,6 +33,7 @@
         name:
           - awscli
           - dos2unix
+          - ffmpeg
           - gnupg
           - golang
           - graphviz
