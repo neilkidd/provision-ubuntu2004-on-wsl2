@@ -69,6 +69,6 @@
 
   roles:
     - role: stephdewit.nvm
-      nvm_version: 0.39.1
-      nvm_node_version: 16.17.0
+      nvm_version: 0.39.3
+      nvm_node_version: 18.16.0
       become: false
