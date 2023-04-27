@@ -8,29 +8,20 @@
     state: present
   become: true
 
-- name: "yarn - ensure deb file list exists"
-  file:
-    path: /etc/apt/sources.list.d/yarn.list
-    owner: root
-    mode: 0644
-    state: touch
-  become: true
-
-- name: "yarn - add package into sources list"
+- name: "yarn - ensure yarn.list"
   lineinfile:
     dest: /etc/apt/sources.list.d/yarn.list
     line: 'deb http://dl.yarnpkg.com/debian/ stable main'
     state: present
-  become: true
-
-- name: "yarn - update apt cache"
-  apt:
-    update_cache: yes
+    create: yes
+    owner: root
+    group: root
+    mode: '0644'
   become: true
 
 - name: "yarn - install via apt"
   apt:
     state: latest
-    name:
-      - yarn
+    name: yarn
+    update_cache: yes
   become: true
